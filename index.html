@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Accessible Forms</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<main>
+		<h1>Register Your Cat</h1>
+		<form>
+			<div class="container">
+
+				<div class="item">
+					<label for="name">Cat's Name<span aria-hidden="true">*</span></label>
+					<input
+						id="name"
+						type="text"
+						aria-required="true"
+						aria-invalid="true"
+						name="name"
+					/>
+					<p id="error1" class="error">
+						Cat's name is required
+					</p>
+
+					<label for="email">Your Email<span aria-hidden="true">*</span></label>
+					<input id="email" type="email" name="email" aria-required="true" />
+
+					<label for="birthday">Cat's Birthday</label>
+					<input
+						id="birthday"
+						type="text"
+						aria-describedby="birthday-help"
+						pattern="^\s*(1[012]|0?[1-9])\/(3[01]|[12][0-9]|0?[1-9])\/((?:19|20)\d{2})\s*$"
+					/>
+					<p id="birthday-help">
+						MM/DD/YYYY
+					</p>
+
+					<fieldset>
+						<legend>Is your cat fixed?</legend>
+						<label for="yes">
+							Yes
+							<input type="radio" id="yes" name="fixed" />
+						</label>
+						<label for="no">
+							No
+							<input type="radio" id="no" name="fixed" />
+						</label>
+					</fieldset>
+				</div>
+				
+				<div class="item">
+					<label for="markings">Cat's Markings<span aria-hidden="true">*</span></label>
+					<select id="markings" aria-required="true">
+						<option value="">Select an option…</option>
+						<option value="solid">Solid Color</option>
+						<option value="bicolor">Bicolor</option>
+						<option value="calico">Calico</option>
+						<option value="tabby">Tabby</option>
+					</select>
+
+					<fieldset>
+						<legend>Cat's Colors</legend>
+						<p>
+							<label for="black">
+								Black
+								<input type="checkbox" id="black" />
+							</label>
+						</p>
+						<p>
+							<label for="white">
+								White
+								<input type="checkbox" id="white" />
+							</label>
+						</p>
+						<p>
+							<label for="brown">
+								Brown
+								<input type="checkbox" id="brown" />
+							</label>
+						</p>
+						<p>
+							<label for="orange">
+								Orange
+								<input type="checkbox" id="orange" />
+							</label>
+						</p>
+					</fieldset>
+				</div>
+
+			</div>
+
+			<button type="submit">Submit</button>
+		</form>
+	</main>
+</body>
+
+<script>
+	const form = document.querySelector('form');
+	const nameError = document.getElementById('error1');
+	nameError.hidden = true;
+
+	form.addEventListener('submit', (event) => {
+		event.preventDefault();
+		console.log(event);
+	});
+</script>
+</html>
